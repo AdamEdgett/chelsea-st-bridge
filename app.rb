@@ -16,6 +16,10 @@ before do
   response.headers['Access-Control-Allow-Origin'] = '*'
 end
 
+get '/' do
+  File.read(File.join('public', 'index.html'))
+end
+
 get '/api/status' do
   content_type :json
   tweet = get_latest_tweet
