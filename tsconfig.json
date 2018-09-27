@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "jsx": "react",
+    "lib": ["dom", "es2015", "es2016"],
+    "sourceMap": true,
+    "module": "ES2015",
+    "moduleResolution": "Node",
+    "paths": {
+      "components/*": ["src/components/*"],
+      "helpers/*": ["src/helpers/*"],
+      "types/*": ["src/types/*"],
+    },
+    "noImplicitAny": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "target": "es5",
+  },
+  "exclude": ["public", "node_modules"]
+}
