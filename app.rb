@@ -5,7 +5,6 @@ require 'uri'
 require 'net/http'
 require 'sinatra'
 require 'sinatra/cross_origin'
-require 'pry'
 
 enable :cross_origin
 set :allow_origin, :any
