@@ -33,7 +33,7 @@ get '/api/status' do
 end
 
 def get_status(tweet)
-  /Chelsea (st|st.|street) bridge (is )?(?<status>down|up)/i.match(tweet)['status']
+  /Chelsea (st |st. |street )?bridge (is )?(?<status>down|up)/i.match(tweet)['status']
 end
 
 def get_latest_tweet
