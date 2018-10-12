@@ -44,19 +44,26 @@ class App extends React.Component<AppProps> {
       }
 
       statusText = (
-        <span>
+        <span className="details">
           As of {timestamp}, the bridge is {status.openStatus}
         </span>
       );
     }
 
     return (
-      <div className="content">
-        <div className="header">Is the Chelsea St Bridge up?</div>
-        <img src={img} />
-        <div className="status-title">{statusTitle}</div>
-        {statusText}
-      </div>
+      <React.Fragment>
+        <div className="gh-link">
+          <a href="https://github.com/adamedgett/chelsea-st-bridge" target="_blank">
+            <img src="/img/github.svg" />
+          </a>
+        </div>
+        <div className="content">
+          <div className="header">Is the Chelsea St Bridge up?</div>
+          <img src={img} />
+          <div className="status-title">{statusTitle}</div>
+          {statusText}
+        </div>
+      </React.Fragment>
     );
   }
 }
