@@ -59,7 +59,7 @@ class App extends React.Component<AppProps> {
         </div>
         <div className="content">
           <div className="header">Is the Chelsea St Bridge up?</div>
-          <img src={img} />
+          <img className="bridge-logo" src={img} />
           <div className="status-title">{statusTitle}</div>
           {statusText}
         </div>
