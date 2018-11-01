@@ -1,5 +1,7 @@
 import React from "react";
 import format from "date-fns/format";
+import isToday from "date-fns/is_today";
+import isYesterday from "date-fns/is_yesterday";
 
 import { getLatestStatus } from "helpers/status";
 import { Status, OpenStatus } from "types/status";
@@ -8,6 +10,20 @@ import Loader from "components/loader";
 
 interface AppProps {
   status?: Status;
+}
+
+function getFormattedTimestamp(dateTime: Date): string {
+  const formattedTime = format(dateTime, "h:mm A");
+  let formattedDate = "";
+  if (!isToday(dateTime)) {
+    if (isYesterday(dateTime)) {
+      formattedDate = "yesterday at ";
+    } else {
+      formattedDate = `${format(dateTime, "M/D")} at`;
+    }
+  }
+
+  return `${formattedDate}${formattedTime}`;
 }
 
 class App extends React.Component<AppProps> {
@@ -37,7 +53,7 @@ class App extends React.Component<AppProps> {
 
     let statusText = <span>The bridge is currently closed</span>;
     if (status.dateTime) {
-      const formattedTimestamp = format(status.dateTime, "h:mm A");
+      const formattedTimestamp = getFormattedTimestamp(status.dateTime);
       let timestamp = <span>{formattedTimestamp}</span>;
       if (status.tweetUrl) {
         timestamp = <a href={status.tweetUrl} target="_blank">{formattedTimestamp}</a>;
