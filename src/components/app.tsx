@@ -3,13 +3,13 @@ import format from "date-fns/format";
 import isToday from "date-fns/is_today";
 import isYesterday from "date-fns/is_yesterday";
 
-import { getLatestStatus } from "helpers/status";
 import { Status, OpenStatus } from "types/status";
 
 import Loader from "components/loader";
 
 interface AppProps {
   status?: Status;
+  error?: boolean;
 }
 
 function getFormattedTimestamp(dateTime: Date): string {
@@ -32,7 +32,21 @@ class App extends React.Component<AppProps> {
   }
 
   render() {
-    const { status } = this.props;
+    const { status, error } = this.props;
+    if (error) {
+      return (
+        <div className="content error">
+          <div className="header">Is the Chelsea St Bridge up?</div>
+          <div className="details">
+            Whoops! Something went wrong
+          </div>
+          <div className="details">
+            Check the <a href="https://twitter.com/LoganToChelsea">Twitter feed</a> for the latest status
+          </div>
+        </div>
+      );
+    }
+
     if (!status) {
       return (
         <div className="content">

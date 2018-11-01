@@ -12,6 +12,8 @@ window.onload = function onLoad() {
 
   getLatestStatus().then((status) => {
     component = ReactDOM.render(<App {...component.props} status={status} />, contentAnchor);
+  }, (error) => {
+    component = ReactDOM.render(<App {...component.props} error={true} />, contentAnchor);
   });
 };
 
