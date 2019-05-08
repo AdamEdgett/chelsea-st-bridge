@@ -2,16 +2,16 @@ GEM
   remote: https://rubygems.org/
   specs:
     mustermann (1.0.3)
-    rack (2.0.5)
-    rack-protection (2.0.4)
+    rack (2.0.7)
+    rack-protection (2.0.5)
       rack
-    sinatra (2.0.4)
+    sinatra (2.0.5)
       mustermann (~> 1.0)
       rack (~> 2.0)
-      rack-protection (= 2.0.4)
+      rack-protection (= 2.0.5)
       tilt (~> 2.0)
     sinatra-cross_origin (0.4.0)
-    tilt (2.0.8)
+    tilt (2.0.9)
 
 PLATFORMS
   ruby
@@ -21,4 +21,4 @@ DEPENDENCIES
   sinatra-cross_origin
 
 BUNDLED WITH
-   1.16.5
+   1.17.3
