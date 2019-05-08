@@ -22,7 +22,8 @@ end
 get '/api/status' do
   content_type :json
   tweet = get_latest_tweet
-  status = get_status(tweet['text']).downcase
+
+  status = up?(tweet['text']) ? 'up' : 'down'
   date = DateTime.parse(tweet['created_at'])
   {
     'openStatus' => status,
@@ -32,8 +33,23 @@ get '/api/status' do
   }.to_json
 end
 
-def get_status(tweet)
-  /Chelsea (st |st. |street )?bridge (is )?(?<status>down|up)/i.match(tweet)['status']
+TWEET_REGEX = /Chelsea (st |st. |street )?bridge (is )?(?<status>down|up|open|closed)/i
+
+def parse_tweet(tweet)
+  TWEET_REGEX.match(tweet)
+end
+
+def up?(tweet)
+  status = parse_tweet(tweet)['status'].downcase
+  if status.eql? 'open' then
+    return true
+  elsif status.eql? 'closed' then
+    return false
+  elsif status.eql? 'up' then
+    return true
+  elsif status.eql? 'down' then
+    return false
+  end
 end
 
 def get_latest_tweet
