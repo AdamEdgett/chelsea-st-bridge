@@ -23,6 +23,10 @@ get '/api/status' do
   content_type :json
   tweet = get_latest_tweet
 
+  if !tweet then
+    halt 204
+  end
+
   status = up?(tweet['text']) ? 'up' : 'down'
   date = DateTime.parse(tweet['created_at'])
   {
@@ -53,14 +57,15 @@ def up?(tweet)
 end
 
 def get_latest_tweet
-  uri = URI('https://api.twitter.com/1.1/statuses/user_timeline.json?count=1&screen_name=logantochelsea')
+  uri = URI('https://api.twitter.com/1.1/statuses/user_timeline.json?count=10&screen_name=logantochelsea')
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
   headers = {
     'Authorization' => "Bearer #{bearer_token}"
   }
   res = http.get(uri.request_uri, headers)
-  JSON.parse(res.body).first
+  tweets = JSON.parse(res.body)
+  tweets.find {|tweet | tweet['text'].match? TWEET_REGEX }
 end
 
 def bearer_token
