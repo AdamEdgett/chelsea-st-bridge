@@ -55,9 +55,9 @@ class App extends React.Component<AppProps> {
       );
     }
 
-    let img = "/img/logo.png";
+    let statusImgClass = "down";
     if (status.openStatus === OpenStatus.Up) {
-      img = "/img/up.png";
+      statusImgClass = "up";
     }
 
     let statusTitle = "NO";
@@ -84,12 +84,12 @@ class App extends React.Component<AppProps> {
       <React.Fragment>
         <div className="gh-link">
           <a href="https://github.com/adamedgett/chelsea-st-bridge" target="_blank">
-            <img src="/img/github.svg" />
+            <div className="gh-logo-img" />
           </a>
         </div>
         <div className="content">
           <div className="header">Is the Chelsea St Bridge up?</div>
-          <img className="bridge-logo" src={img} />
+          <div className={`bridge-logo ${statusImgClass}`} />
           <div className="status-title">{statusTitle}</div>
           {statusText}
         </div>

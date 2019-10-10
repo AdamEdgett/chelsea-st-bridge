@@ -12,7 +12,10 @@ a {
   position: absolute;
   top: 10px;
   right: 10px;
-  img {
+  .gh-logo-img {
+    background-image: url('/img/github.svg');
+    background-size: cover;
+
     width: 20px;
     height: 20px;
   }
@@ -29,6 +32,19 @@ a {
     color: @theme-color;
   }
 
+  .bridge-logo {
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &.up {
+      background-image: url('/img/up.png');
+    }
+
+    &.down {
+      background-image: url('/img/down.png');
+    }
+  }
+
   .status-title {
     font-size: 80px;
     color: @theme-color;
@@ -37,7 +53,7 @@ a {
 
 @media screen and (max-width: 1000px) {
   .gh-link {
-    img {
+    .gh-logo-img {
       margin: 10px;
       width: 40px;
       height: 40px;
@@ -68,5 +84,46 @@ a {
     }
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: @theme-color;
+  }
+
+  a {
+    color: white;
+  }
+
+  .gh-link {
+    .gh-logo-img {
+      background-image: url('/img/github-white.svg');
+    }
+  }
+
+  .content {
+    .header {
+      color: white;
+    }
+
+    .bridge-logo {
+      &.up {
+        background-image: url('/img/up-white.png');
+      }
+
+      &.down {
+        background-image: url('/img/down-white.png');
+      }
+    }
+
+    .status-title {
+      color: white;
+    }
+
+    .details {
+      color: white;
+    }
+  }
+}
+
 
 @import "~loader";
